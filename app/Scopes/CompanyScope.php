@@ -5,8 +5,9 @@ namespace App\Scopes;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+//use Auth;
 
-class ContractCustomerScope implements Scope
+class CompanyScope implements Scope
 {
     /**
      * Apply the scope to a given Eloquent query builder.
@@ -15,9 +16,8 @@ class ContractCustomerScope implements Scope
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return void
      */
-     
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('contracts.customer_id', getContactId())->where('contracts.status', 'Published');
+        $builder->where('company_id', Auth::user()->company_id);
     }
 }
